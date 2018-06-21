@@ -9,7 +9,7 @@ import service.*;
 
 public class AccountController {
 	public void account() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		AccountBean account = null;
 		account = new AccountBean();
 		account.setName(JOptionPane.showInputDialog("Name?"));
@@ -17,19 +17,29 @@ public class AccountController {
 		account.setPass(JOptionPane.showInputDialog("Pass?"));
 		service.createAccount(account);
 	}
+	public void minusAccount() {
+		AccountService2 service = new AccountServiceImpl2();
+		MinusAccountBean minusAccount = null;
+		minusAccount = new MinusAccountBean();
+		minusAccount.setName(JOptionPane.showInputDialog("Name?"));
+		minusAccount.setUid(JOptionPane.showInputDialog("ID?"));
+		minusAccount.setPass(JOptionPane.showInputDialog("Pass?"));
+		minusAccount.setLimit(Integer.parseInt(JOptionPane.showInputDialog("Limit?")));
+		service.createMinus(minusAccount);
+	}
 	
 	public void list() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		JOptionPane.showMessageDialog(null, service.list());
 	}
 
 	public void findByName() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		JOptionPane.showMessageDialog(null, service.findByName((JOptionPane.showInputDialog("Name?"))));
 	}
 
 	public void findById() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		AccountBean account = null;
 		account = new AccountBean();
 		account.setUid(JOptionPane.showInputDialog("ID?"));
@@ -37,7 +47,7 @@ public class AccountController {
 	}
 
 	public void changePass() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		AccountBean account = null;
 		account = new AccountBean();
 		account.setUid(JOptionPane.showInputDialog("ID?"));
@@ -46,7 +56,7 @@ public class AccountController {
 	}
 
 	public void deleteAccount() {
-		AccountService service = new AccountServiceImpl();
+		AccountService2 service = new AccountServiceImpl2();
 		AccountBean account = null;
 		account = new AccountBean();
 		account.setUid(JOptionPane.showInputDialog("ID?"));

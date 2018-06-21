@@ -6,7 +6,7 @@ import service.*;
 
 public class MemberController {
 	public void join() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		MemberBean member = null;
 		member = new UserBean();
 		member.setName(JOptionPane.showInputDialog("Name?"));
@@ -20,7 +20,7 @@ public class MemberController {
 	}
 
 	public void add() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		MemberBean member = null;
 		member = new StaffBean();
 		member.setName(JOptionPane.showInputDialog("Name?"));
@@ -34,12 +34,12 @@ public class MemberController {
 	}
 
 	public void list() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		JOptionPane.showMessageDialog(null, service.list());
 	}
 
 	public void findById() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		MemberBean member = null;
 		member = new StaffBean();
 		member.setUid(JOptionPane.showInputDialog("ID?"));
@@ -47,12 +47,12 @@ public class MemberController {
 	}
 
 	public void findByName() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		JOptionPane.showMessageDialog(null, service.findByName(JOptionPane.showInputDialog("name?")));
 	}
 
 	public void update() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		MemberBean member = null;
 		member = new StaffBean();
 		member.setUid(JOptionPane.showInputDialog("ID?"));
@@ -61,7 +61,7 @@ public class MemberController {
 	}
 
 	public void withdrawal() {
-		MemberService service = new MemberServiceImpl();
+		MemberService2 service = new MemberServiceImpl2();
 		MemberBean member = null;
 		member = new StaffBean();
 		member.setUid(JOptionPane.showInputDialog("ID?"));

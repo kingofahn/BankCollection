@@ -22,6 +22,7 @@ public class AccountServiceImpl implements AccountService {
 		list.add(account);
 	}
 
+	
 	@Override
 	public String createAccountNo() {
 		String accountNum = "";
