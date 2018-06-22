@@ -1,23 +1,89 @@
 package serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import controller.AdminController;
 import domain.*;
 import service.*;
 
 public class AdminServiceImpl implements AdminService {
-	private Map<String, AccountBean> accountTable;
-	private Map<String, MemberBean> memberTable;
-
-	public AdminServiceImpl() {
-		accountTable = new HashMap<>();
-		memberTable = new HashMap<>();
+	private static AdminServiceImpl instnace = new AdminServiceImpl();
+	public static AdminServiceImpl getInstnace() {return instnace;}
+	private AdminServiceImpl() {}
+	List<MemberBean> list;
+	List<AccountBean> accountList;
+	
+//		list = new ArrayList<>();
+//		accountList = new ArrayList<>();
+	@Override
+	public void createStaff(StaffBean staff) {
+		staff.setAccessNum("999");
+		list.add(staff);
 	}
 
-	public Map<String, AccountBean> accountList() {
-		return accountTable;
+	@Override
+	public List<MemberBean> memberList() {
+		return list;
 	}
 
-	public Map<String, MemberBean> memberList() {
-		return memberTable;
+	@Override
+	public List<MemberBean> findMemberByName(String name) {
+		List<MemberBean> temp = new ArrayList<>();
+		for (MemberBean e : list) {
+			if (name.equals(e.getName())) {
+				temp.add(e);
+			}
+		}
+		return temp;
 	}
+
+	@Override
+	public MemberBean findMemberById(MemberBean member) {
+		MemberBean mbr = new MemberBean();
+		for (MemberBean e : list) {
+			if (member.getUid().equals(e.getUid())) {
+				mbr = e;
+				break;
+			}
+		}
+		return mbr;
+	}
+
+	@Override
+	public List<AccountBean> accountList() {
+		return accountList;
+	}
+
+	@Override
+	public List<AccountBean> findAccountByName(String name) {
+		List<AccountBean> temp = new ArrayList<>();
+		for (AccountBean e : accountList) {
+			if (name.equals(e.getName())) {
+				temp.add(e);
+			}
+		}
+		return temp;
+	}
+
+	@Override
+	public String createRandom(int start, int end) {
+		return String.valueOf((int) (Math.random() * (end + 1)) + start);
+	}
+
+	@Override
+	public String createDate() {
+		return new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date());
+	}
+
+	@Override
+	public String createAccountNo() {
+		String accountNum = "";
+		for (int i = 0; i < 3; i++) {
+			accountNum += (i != 2) ? String.format("%03d", Integer.parseInt(createRandom(0, 999))) + "-"
+					: String.format("%03d", Integer.parseInt(createRandom(0, 999))) + "";
+		}
+		return accountNum;
+	}
+
 }

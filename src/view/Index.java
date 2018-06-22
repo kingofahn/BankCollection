@@ -1,85 +1,106 @@
 package view;
 
-import javax.swing.JOptionPane;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import domain.MemberBean;
-import domain.StaffBean;
-import domain.UserBean;
-import service.MemberService;
-import serviceImpl.MemberServiceImpl;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
-public class Index {
+public class Index extends JFrame {
+	private static final long serialVersionUID = 1L;
 
-	enum MemberButt {
-		EXIT, JOIN, ADD, // create //JOIN은 일바유저 추가 ADD는 직원추가
-		LIST, FIND_BY_ID, FIND_BY_NAME, COUNT, // read ALL, ONE, SOME
-		UPDATE, // update
-		WITHDRAWAL // delete
-	};
+	Index() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("관리자화면");
+		this.setLayout(new GridLayout(3, 3, 10, 10));
+		JButton btn1 = new JButton("회원가입");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Register(); // 객체로 안만들면 더 빠르다.
+			}
+		});
+		this.add(btn1);
+		JButton btn2 = new JButton("통장생성");
+		btn2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new OpenAccount();
+			}
+		});
+		this.add(btn2);
+		JButton btn3 = new JButton("목록보기");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn3);
+		JButton btn4 = new JButton("ID 검색");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn4);
+		JButton btn5 = new JButton("이름 검색");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn5);
+		JButton btn6 = new JButton("비번 변경");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn6);
+		JButton btn7 = new JButton("입금");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn7);
+		JButton btn8 = new JButton("출금");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn8);
+		JButton btn9 = new JButton("회원 탈퇴");
+		btn1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		this.add(btn9);
+		setSize(600, 600);
+		setLocation(100, 100);
+		setVisible(true);
+	}
 
 	public static void main(String[] args) {
-		MemberService service = new MemberServiceImpl(); // sub class의 datatype 을 super class로 정의
-		MemberBean member = null;
-		while (true) {
-			MemberButt select = (MemberButt) JOptionPane.showInputDialog(null, "BANK", "SELECT MENU",
-					JOptionPane.QUESTION_MESSAGE, null,
-					new MemberButt[] { MemberButt.EXIT, MemberButt.JOIN, MemberButt.ADD, MemberButt.LIST,
-							MemberButt.FIND_BY_ID, MemberButt.FIND_BY_NAME, MemberButt.COUNT, MemberButt.UPDATE,
-							MemberButt.WITHDRAWAL },
-					null);
-
-			switch (select) {
-			case EXIT:
-				return;
-			case JOIN:
-				member = new UserBean();
-				member.setName(JOptionPane.showInputDialog("Name?"));
-				member.setUid(JOptionPane.showInputDialog("ID?"));
-				member.setPass(JOptionPane.showInputDialog("Pass?"));
-				member.setSsn(JOptionPane.showInputDialog("SSN?"));
-				member.setAddr(JOptionPane.showInputDialog("ADRS?"));
-				member.setPhone(JOptionPane.showInputDialog("PHONE?"));
-				member.setEmail(JOptionPane.showInputDialog("EMAIL?"));
-				service.createUser((UserBean) member);
-				break;
-			case ADD:
-				member = new StaffBean();
-				member.setName(JOptionPane.showInputDialog("Name?"));
-				member.setUid(JOptionPane.showInputDialog("ID?"));
-				member.setPass(JOptionPane.showInputDialog("Pass?"));
-				member.setSsn(JOptionPane.showInputDialog("SSN?"));
-				member.setAddr(JOptionPane.showInputDialog("ADRS?"));
-				member.setPhone(JOptionPane.showInputDialog("PHONE?"));
-				member.setEmail(JOptionPane.showInputDialog("EMAIL?"));
-				service.createStaff((StaffBean) member);
-				break;
-			case LIST:
-				JOptionPane.showMessageDialog(null, service.list());
-				break;
-			case FIND_BY_ID:
-				member = new StaffBean();
-				member.setUid(JOptionPane.showInputDialog("ID?"));
-				JOptionPane.showMessageDialog(null, service.findById(member));
-				break;
-			case FIND_BY_NAME:
-				JOptionPane.showMessageDialog(null, service.findByName(JOptionPane.showInputDialog("name?")));
-				break;
-			case UPDATE:
-				member = new StaffBean();
-				member.setUid(JOptionPane.showInputDialog("ID?"));
-				member.setUid(
-						JOptionPane.showInputDialog("OldPass?") + "/" + (JOptionPane.showInputDialog("NewPass?")));
-				service.updatePassword(member);
-				break;
-			case WITHDRAWAL:
-				member = new StaffBean();
-				member.setUid(JOptionPane.showInputDialog("ID?"));
-				member.setUid(JOptionPane.showInputDialog("Pass?"));
-				service.deleteMember(member);
-				break;
-			default:
-				break;
-			}
-		}
+		new Index();
 	}
 }
