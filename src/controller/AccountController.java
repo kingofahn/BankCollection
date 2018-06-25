@@ -9,7 +9,7 @@ import service.*;
 public class AccountController {
 	private static AccountController instance = new AccountController();
 	public static AccountController getIntance() {return instance;}
-	public AccountController() {}
+	private AccountController() {}
 
 	public void account(AccountBean account) {
 		AccountServiceImpl.getInstance().createAccount(account);
